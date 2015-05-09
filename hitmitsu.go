@@ -24,8 +24,19 @@ type Hitmitsu struct {
 func init() {
     http.HandleFunc("/", handler)
     http.HandleFunc("/passupdate", update)
-
+    http.HandleFunc("/show", show)
 }
+
+func show(w http.ResponseWriter, r *http.Request) {
+    c := appengine.NewContext(r)
+    password, err := getOurPassword(c)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return;
+    }
+    fmt.Fprint(w, password.Content)
+}
+
 func getPassword(c appengine.Context) (*Hitmitsu,error){
     client := urlfetch.Client(c)
     resp, err := client.Get("http://hpmobile.jp/app/nekoatsume/neko_daily.php")
