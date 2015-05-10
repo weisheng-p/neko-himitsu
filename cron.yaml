@@ -1,0 +1,4 @@
+cron:
+- description: update password
+  url: /passupdate
+  schedule: every 30 minutes
