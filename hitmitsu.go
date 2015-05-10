@@ -2,6 +2,7 @@ package hitmitsu
 
 import (
     "fmt"
+    "html/template"
     "net/http"
     "io/ioutil"
     "time"
@@ -27,6 +28,8 @@ func init() {
     http.HandleFunc("/show", show)
 }
 
+var showTmpl = template.Must(template.ParseFiles("templates/show.html"))
+
 func show(w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
     password, err := getOurPassword(c)
@@ -34,7 +37,7 @@ func show(w http.ResponseWriter, r *http.Request) {
         http.Error(w, err.Error(), http.StatusInternalServerError)
         return;
     }
-    fmt.Fprint(w, password.Content)
+    showTmpl.Execute(w, password)
 }
 
 func getPassword(c appengine.Context) (*Hitmitsu,error){
