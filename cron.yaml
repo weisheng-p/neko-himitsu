@@ -1,4 +1,6 @@
 cron:
 - description: update password
   url: /passupdate
-  schedule: every 30 minutes
+  schedule: every 5 minutes from 23:05 to 23:20
+  timezone: Asia/Singapore
+
