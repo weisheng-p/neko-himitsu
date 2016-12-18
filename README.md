@@ -1,5 +1,5 @@
-# neko-hitmitsu
-neko-hitmitsu is a google app engine app that allow user to copy paste japanese password for neko atsume
+# neko-himitsu
+neko-himitsu is a google app engine app that allow user to copy paste japanese password for neko atsume
 
 ## Setup
 update app.yaml to point to your application id
